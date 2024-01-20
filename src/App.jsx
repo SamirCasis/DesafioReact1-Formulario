@@ -1,17 +1,14 @@
-import { useState } from 'react'
-import './App.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import Registro from './components/Registro'
-
+import { useState } from 'react';
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Registro from './components/Registro';
 
 function App() {
-  const [error, setError] = useState("")
-  return (
+  const [error, setError] = useState('');
 
-    <>
-      <Registro />
-    </>
-  )
+  return (
+      <Registro error={error} setError={setError} />
+  );
 }
 
-export default App
+export default App;

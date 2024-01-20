@@ -3,83 +3,116 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 const Formulario = () => {
+  const [data, setData] = useState({
+    nombre: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
 
-    const [data, setData] = useState({
-        nombre: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-    })
+  const [error, setError] = useState({
+    error: false,
+    msg: '',
+    color: '',
+  });
 
-    const validarDatos = (e) => {
-        e.preventDefault();
+  const validarDatos = (e) => {
+    e.preventDefault();
 
-        const { nombre, email, password, confirmPassword } = data
-        const validacionDatos = !nombre || !email || !password || !confirmPassword
-        const validarPassword = password !== confirmPassword
+    const { nombre, email, password, confirmPassword } = data;
+    const validacionDatos = !nombre || !email || !password || !confirmPassword;
+    const validarPassword = password !== confirmPassword;
 
-        validacionDatos ?
-            setError({
-                error: true,
-                msg: 'completa todos los campos',
-                color: 'danger',
-            }) :
-            setError({
-                error: false,
-                msg: 'cuenta validada!',
-                color: 'success',
-            });
-
-        if (validarPassword) {
-            setError({
-                error: true,
-                msg: 'Las contraseñas no coinciden',
-                color: 'danger'
-            })
-        }
-        return
+    if (validacionDatos) {
+      setError({
+        error: true,
+        msg: 'Completa todos los campos',
+        color: 'warning',
+      });
+    } else if (validarPassword) {
+      setError({
+        error: true,
+        msg: 'Las contraseñas no coinciden',
+        color: 'danger',
+      });
+    } else {
+      setError({
+        error: false,
+        msg: 'Cuenta validada!',
+        color: 'success',
+      });
     }
+  };
 
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
 
+  const [showPassword, setShowPassword] = useState(false);
 
-    setData({
-        nombre: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-    })
+  return (
+    <Form className="formulario" onSubmit={(e) => validarDatos(e)}>
+      <Form.Group className='mb-3'>
+        <Form.Label>Nombre</Form.Label>
+        <input
+          type="text"
+          name='nombre'
+          className='form-control'
+          placeholder='Nombre'
+          onChange={handleChange}
+          value={data.nombre}
+        />
+      </Form.Group>
+      <Form.Group className='mb-3'>
+        <Form.Label>Email</Form.Label>
+        <input
+          type="text"
+          name='email'
+          className='form-control'
+          placeholder='Email'
+          onChange={handleChange}
+          value={data.email}
+        />
+      </Form.Group>
+      <Form.Group className='mb-3'>
+        <Form.Label>Contraseña</Form.Label>
+        <input
+          type={showPassword ? 'text' : 'password'}
+          name='password'
+          className='form-control'
+          placeholder='Contraseña'
+          onChange={handleChange}
+          value={data.password}
+        />
+      </Form.Group>
+      <Form.Group className='mb-3'>
+        <Form.Label>Confirmar Contraseña</Form.Label>
+        <input
+          type={showPassword ? 'text' : 'password'}
+          name='confirmPassword'
+          className='form-control'
+          placeholder='Confirmar Contraseña'
+          onChange={handleChange}
+          value={data.confirmPassword}
+        />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicCheckbox">
+        <Form.Check
+          type="checkbox"
+          label="Mostrar contraseña"
+          onChange={() => setShowPassword(!showPassword)}
+        />
+      </Form.Group>
+      {error.error && (
+        <div className={`alert alert-${error.color}`} role='alert'>
+          {error.msg}
+        </div>
+      )}
+      <Button variant="primary" type="submit">
+        Ingresar
+      </Button>
+    </Form>
+  );
+};
 
-    const handleChange = (e) => {
-        setData({ ...data, [e.target.name]: e.target.value });
-    }
-
-
-    return (
-        <>
-            <Form
-                className="formulario"
-                onSubmit={(e) => validarDatos(e)}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
-                    <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-                    </Form.Text>
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                    Submit
-                </Button>
-            </Form>
-        </>
-    )
-}
-
-export default Formulario
+export default Formulario;
