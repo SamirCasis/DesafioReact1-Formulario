@@ -11,13 +11,9 @@ const Registro = ({ error, setError }) => {
         <SocialButton github={'github'} />
         <SocialButton linkedin={'linkedin'} />
       </section>
-      <p className="mt-3">O usa un correo para registrarte</p>
-      
-        <Formulario error={error} setError={setError} />
-      
-      <section>
-        <Alert error={error} setError={setError} />
-      </section>
+      <p className="mt-3">O usa tu email para registrarte</p>
+      <Formulario error={error} setError={setError} />
+      <Alert error={error} setError={setError} />
       </main>
   );
 };

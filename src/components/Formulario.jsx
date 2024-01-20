@@ -18,11 +18,11 @@ const Formulario = () => {
 
   const validarDatos = (e) => {
     e.preventDefault();
-
+  
     const { nombre, email, password, confirmPassword } = data;
     const validacionDatos = !nombre || !email || !password || !confirmPassword;
     const validarPassword = password !== confirmPassword;
-
+  
     if (validacionDatos) {
       setError({
         error: true,
@@ -92,23 +92,18 @@ const Formulario = () => {
           value={data.confirmPassword}
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
+      <Form.Group className="checkbox mb-3" controlId="formBasicCheckbox">
         <Form.Check
           type="checkbox"
           label="Mostrar contraseña"
           onChange={() => setShowPassword(!showPassword)}
         />
       </Form.Group>
-      {error.error && (
-        <div className={`alert alert-${error.color}`} role='alert'>
-          {error.msg}
-        </div>
-      )}
-      <Button variant="success size-2x" type="submit">
+      <Button variant="success" type="submit">
         Ingresar
       </Button>
     </Form>
   );
 };
 
-export default Formulario;
+export default Formulario
