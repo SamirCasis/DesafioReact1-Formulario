@@ -4,20 +4,21 @@ import SocialButton from "./SocialButton";
 
 const Registro = ({ error, setError }) => {
   return (
-    <>
+    <main className="registro">
       <h1>Crea una cuenta</h1>
-      <section className="botones">
+      <section className="botones mt-3">
         <SocialButton facebook={'facebookF'} />
         <SocialButton github={'github'} />
         <SocialButton linkedin={'linkedin'} />
       </section>
-      <main>
+      <p className="mt-3">O usa un correo para registrarte</p>
+      
         <Formulario error={error} setError={setError} />
-      </main>
+      
       <section>
-        <Alert error={error} />
+        <Alert error={error} setError={setError} />
       </section>
-    </>
+      </main>
   );
 };
 

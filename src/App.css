@@ -33,6 +33,10 @@
   }
 }
 
+body {
+  background-color: color-mix(in hsl decreasing hue, blue percentage, red percentage);
+}
+
 .card {
   padding: 2em;
 }
@@ -45,4 +49,11 @@
   display: flex;
   justify-content: center;
   justify-content: space-evenly;
+}
+
+.registro {
+  border: solid;
+  border-radius: 10px;
+  background-color: rgb(237, 235, 223);
+  padding: 30px;
 }

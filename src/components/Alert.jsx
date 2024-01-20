@@ -1,9 +1,6 @@
-const Alert = () => { 
-  return (
-   <>
-   alert("te ") {/* el mensaje de la alerta */}
-   </>
-  )
-}
+const Alert = () => {
+<></>
 
-export default Alert
+};
+
+export default Alert;

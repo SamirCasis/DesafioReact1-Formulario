@@ -37,7 +37,7 @@ const Formulario = () => {
       });
     } else {
       setError({
-        error: false,
+        error: true,
         msg: 'Cuenta validada!',
         color: 'success',
       });
@@ -51,9 +51,8 @@ const Formulario = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <Form className="formulario" onSubmit={(e) => validarDatos(e)}>
+    <Form className="formulario mt-4" onSubmit={(e) => validarDatos(e)}>
       <Form.Group className='mb-3'>
-        <Form.Label>Nombre</Form.Label>
         <input
           type="text"
           name='nombre'
@@ -63,10 +62,9 @@ const Formulario = () => {
           value={data.nombre}
         />
       </Form.Group>
-      <Form.Group className='mb-3'>
-        <Form.Label>Email</Form.Label>
+      <Form.Group className='mb-3 mt-2'>
         <input
-          type="text"
+          type='email'
           name='email'
           className='form-control'
           placeholder='Email'
@@ -74,8 +72,7 @@ const Formulario = () => {
           value={data.email}
         />
       </Form.Group>
-      <Form.Group className='mb-3'>
-        <Form.Label>Contraseña</Form.Label>
+      <Form.Group className='mb-3 mt-2'>
         <input
           type={showPassword ? 'text' : 'password'}
           name='password'
@@ -85,8 +82,7 @@ const Formulario = () => {
           value={data.password}
         />
       </Form.Group>
-      <Form.Group className='mb-3'>
-        <Form.Label>Confirmar Contraseña</Form.Label>
+      <Form.Group className='mb-3 mt-2'>
         <input
           type={showPassword ? 'text' : 'password'}
           name='confirmPassword'
@@ -108,7 +104,7 @@ const Formulario = () => {
           {error.msg}
         </div>
       )}
-      <Button variant="primary" type="submit">
+      <Button variant="success size-2x" type="submit">
         Ingresar
       </Button>
     </Form>
