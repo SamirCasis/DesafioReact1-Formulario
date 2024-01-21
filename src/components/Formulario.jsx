@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-const Formulario = () => {
+const Formulario = ({setError}) => {
   const [data, setData] = useState({
     nombre: '',
     email: '',
@@ -10,19 +10,13 @@ const Formulario = () => {
     confirmPassword: '',
   });
 
-  const [error, setError] = useState({
-    error: false,
-    msg: '',
-    color: '',
-  });
-
   const validarDatos = (e) => {
     e.preventDefault();
-  
+
     const { nombre, email, password, confirmPassword } = data;
     const validacionDatos = !nombre || !email || !password || !confirmPassword;
     const validarPassword = password !== confirmPassword;
-  
+
     if (validacionDatos) {
       setError({
         error: true,
@@ -106,4 +100,4 @@ const Formulario = () => {
   );
 };
 
-export default Formulario
+export default Formulario;

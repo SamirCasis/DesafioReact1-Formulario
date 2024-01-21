@@ -1,8 +1,9 @@
-import Alert from "./Alert";
-import Formulario from "./Formulario";
-import SocialButton from "./SocialButton";
+import Alerta from './Alerta';
+import Formulario from './Formulario';
+import SocialButton from './SocialButton';
 
 const Registro = ({ error, setError }) => {
+
   return (
     <main className="registro">
       <h1>Crea una cuenta</h1>
@@ -12,10 +13,13 @@ const Registro = ({ error, setError }) => {
         <SocialButton linkedin={'linkedin'} />
       </section>
       <p className="mt-3">O usa tu email para registrarte</p>
-      <Formulario error={error} setError={setError} />
-      <Alert error={error} setError={setError} />
-      </main>
+      <Formulario setError={setError} />
+      <article className="mt-3">
+        <Alerta error={error} />
+      </article>
+    </main>
   );
 };
 
 export default Registro;
+
